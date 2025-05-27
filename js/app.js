@@ -4,12 +4,15 @@ function alterarStatus(id){
     let game = document.getElementById(`game-${id}`);
     let itemImage = game.querySelector(".dashboard__item__img");
     let itemBotton = game.querySelector(".dashboard__item__button");
-    
+    let itemName = game.querySelector('.dashboard__item__name');
+
     if(itemImage.classList.contains("dashboard__item__img--rented")){
-        itemImage.classList.remove("dashboard__item__img--rented");
-        itemBotton.classList.remove("dashboard__item__button--return");
-        itemBotton.innerHTML = "Alugar";
-        fichas++;
+        if (confirm(`Você tem certeza que deseja devolver o jogo ${itemName.textContent}?`) == true) {
+            itemImage.classList.remove("dashboard__item__img--rented");
+            itemBotton.classList.remove("dashboard__item__button--return");
+            itemBotton.innerHTML = "Alugar";
+            fichas++;
+        }
     } else {
         if(fichas >= 1){
             itemImage.classList.add("dashboard__item__img--rented");
@@ -21,7 +24,6 @@ function alterarStatus(id){
             return;
         }
     }
-
     atualizarTexto();
 }
 
